@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calorie Calculator - Calculate Your Daily Calorie Needs</title>
+  <meta name="description" content="Use our free Calorie Calculator to determine your daily calorie needs and macronutrient breakdown based on your age, gender, weight, height, activity level, and fitness goals.">
+  <meta name="keywords" content="calorie calculator, daily calorie needs, macronutrient calculator, fitness calculator, weight loss calculator, muscle gain calculator">
+  <meta name="author" content="YourWebsiteName">
+  <!-- Open Graph Meta Tags for Social Sharing -->
+  <meta property="og:title" content="Calorie Calculator - Calculate Your Daily Calorie Needs">
+  <meta property="og:description" content="Use our free Calorie Calculator to determine your daily calorie needs and macronutrient breakdown based on your age, gender, weight, height, activity level, and fitness goals.">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630.png?text=Calorie+Calculator">
+  <meta property="og:url" content="https://yourwebsite.com/calorie-calculator">
+  <!-- Structured Data for SEO -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Calorie Calculator",
+      "description": "Use our free Calorie Calculator to determine your daily calorie needs and macronutrient breakdown based on your age, gender, weight, height, activity level, and fitness goals.",
+      "url": "https://yourwebsite.com/calorie-calculator",
+      "image": "https://via.placeholder.com/1200x630.png?text=Calorie+Calculator",
+      "author": {
+        "@type": "Organization",
+        "name": "YourWebsiteName"
+      }
+    }
+  </script>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* Gradient background */
+      font-family: 'Arial', sans-serif;
+      color: #333;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    h1 {
+      color: #ff6f61;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .form-label {
+      font-weight: bold;
+      color: #333;
+    }
+    .form-control, .form-select {
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    .btn-primary {
+      background-color: #ff6f61;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+    .btn-primary:hover {
+      background-color: #ff4a3d;
+    }
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    .info-box {
+      background: rgba(255, 255, 255, 0.8);
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+    .info-box h5 {
+      color: #ff6f61;
+      margin-top: 0;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #666;
+    }
+    .footer a {
+      color: #ff6f61;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      text-decoration: underline;
+    }
+    .ad-space {
+      margin-top: 30px;
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+    .ad-space p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #666;
+    }
+    .activity-description {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Calorie Calculator</h1>
+    <p class="text-center">Calculate your daily calorie needs and macronutrient breakdown based on your goals.</p>
+
+    <!-- Calculator Form -->
+    <form id="calorieForm" class="mt-4">
+      <div class="mb-3">
+        <label for="age" class="form-label">Age:</label>
+        <input type="number" class="form-control" id="age" required>
+      </div>
+      <div class="mb-3">
+        <label for="gender" class="form-label">Gender:</label>
+        <select class="form-select" id="gender" required>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="weight" class="form-label">Weight (kg):</label>
+        <input type="number" class="form-control" id="weight" required>
+      </div>
+      <div class="mb-3">
+        <label for="height" class="form-label">Height (cm):</label>
+        <input type="number" class="form-control" id="height" required>
+      </div>
+      <div class="mb-3">
+        <label for="activity" class="form-label">Activity Level:</label>
+        <select class="form-select" id="activity" required>
+          <option value="1.2">Sedentary (little or no exercise)</option>
+          <option value="1.375">Lightly active (light exercise/sports 1-3 days/week)</option>
+          <option value="1.55">Moderately active (moderate exercise/sports 3-5 days/week)</option>
+          <option value="1.725">Very active (hard exercise/sports 6-7 days a week)</option>
+          <option value="1.9">Extra active (very hard exercise/sports & physical job)</option>
+        </select>
+        <div class="activity-description" id="activityDescription">
+          <!-- Activity descriptions will be dynamically inserted here -->
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="goal" class="form-label">Goal:</label>
+        <select class="form-select" id="goal" required>
+          <option value="loss">Weight Loss</option>
+          <option value="maintain">Maintenance</option>
+          <option value="gain">Muscle Gain</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary w-100">Calculate</button>
+    </form>
+
+    <!-- Results Section -->
+    <div class="result mt-4" id="result"></div>
+    <div class="macro-result mt-3" id="macroResult"></div>
+
+    <!-- Information Box -->
+    <div class="info-box mt-4">
+      <h5>How It Works</h5>
+      <p>
+        This calculator uses the <strong>Harris-Benedict Equation</strong> to estimate your Basal Metabolic Rate (BMR), which is the number of calories your body needs at rest. It then adjusts for your activity level and goal (weight loss, maintenance, or muscle gain) to calculate your daily calorie needs.
+      </p>
+      <p>
+        The macronutrient breakdown is based on a <strong>40:30:30 ratio</strong> (carbs:protein:fat), which is a general guideline for balanced nutrition. Adjustments can be made based on individual preferences or dietary requirements.
+      </p>
+    </div>
+
+    <!-- Disclaimer -->
+    <div class="alert alert-warning mt-4">
+      <strong>Disclaimer:</strong> This calculator provides general estimates and is not a substitute for professional medical advice. Individual calorie and nutrient needs may vary based on factors such as metabolism, medical conditions, and lifestyle. Consult a healthcare provider or registered dietitian for personalized recommendations.
+    </div>
+
+    <!-- Ad Space for Google AdSense -->
+    <div class="ad-space">
+      <p>Ad Space (Responsive Ad Unit)</p>
+      <!-- Replace YOUR_AD_UNIT_ID with your Google AdSense ad unit ID -->
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_UNIT_ID" crossorigin="anonymous"></script>
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-YOUR_AD_UNIT_ID"
+           data-ad-slot="1234567890"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>For more information, visit:
+        <a href="https://www.healthline.com/nutrition/how-to-count-macros" target="_blank">Healthline: How to Count Macros</a> |
+        <a href="https://www.mayoclinic.org/healthy-lifestyle/weight-loss/in-depth/calorie-calculator/itt-20402304" target="_blank">Mayo Clinic: Calorie Calculator</a>
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Activity level descriptions
+    const activityDescriptions = {
+      "1.2": "Little or no exercise (e.g., desk job with no additional physical activity).",
+      "1.375": "Light exercise or sports 1-3 days a week (e.g., casual walking or light workouts).",
+      "1.55": "Moderate exercise or sports 3-5 days a week (e.g., jogging, cycling, or gym sessions).",
+      "1.725": "Hard exercise or sports 6-7 days a week (e.g., intense workouts or training).",
+      "1.9": "Very hard exercise, physical job, or training twice a day (e.g., professional athletes)."
+    };
+
+    // Update activity description dynamically
+    document.getElementById('activity').addEventListener('change', function() {
+      const selectedActivity = this.value;
+      const description = activityDescriptions[selectedActivity];
+      document.getElementById('activityDescription').innerHTML = `<p>${description}</p>`;
+    });
+
+    // Calculate calorie needs
+    document.getElementById('calorieForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Get user inputs
+      const age = parseFloat(document.getElementById('age').value);
+      const gender = document.getElementById('gender').value;
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value);
+      const activity = parseFloat(document.getElementById('activity').value);
+      const goal = document.getElementById('goal').value;
+
+      // Calculate BMR (Basal Metabolic Rate)
+      let bmr;
+      if (gender === 'male') {
+        bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+      } else {
+        bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+      }
+
+      // Calculate daily calorie needs based on activity level
+      let calories = Math.round(bmr * activity);
+
+      // Adjust calories based on goal
+      if (goal === 'loss') {
+        calories -= 500; // Subtract 500 calories for weight loss
+      } else if (goal === 'gain') {
+        calories += 500; // Add 500 calories for muscle gain
+      }
+
+      // Display calorie result
+      document.getElementById('result').innerHTML = `
+        <h3>Your daily calorie needs: <strong>${calories} kcal</strong></h3>
+      `;
+
+      // Calculate macro breakdown (40% carbs, 30% protein, 30% fat)
+      const carbs = Math.round((calories * 0.4) / 4); // 1g carb = 4 kcal
+      const protein = Math.round((calories * 0.3) / 4); // 1g protein = 4 kcal
+      const fat = Math.round((calories * 0.3) / 9); // 1g fat = 9 kcal
+
+      // Display macro breakdown
+      document.getElementById('macroResult').innerHTML = `
+        <h4>Macro Breakdown:</h4>
+        <ul>
+          <li><strong>Carbs:</strong> ${carbs}g</li>
+          <li><strong>Protein:</strong> ${protein}g</li>
+          <li><strong>Fat:</strong> ${fat}g</li>
+        </ul>
+      `;
+    });
+  </script>
+
+  <!-- Bootstrap JS (optional) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
